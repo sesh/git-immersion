@@ -1,0 +1,30 @@
+name: Build and Publish to Github Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node / npx
+        uses: actions/setup-node@v3
+        with:
+          node-version: "latest"
+
+      - name: Build workshop with imml
+        run: npx --package commander --package imml --package jsdom --package html-minifier --yes imml git-immersion.imml
+
+      - name: Deploy to Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist/git-immersion
