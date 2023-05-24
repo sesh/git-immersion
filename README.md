@@ -1,4 +1,4 @@
-# Git Immersion (2022 Edition)
+# Git Immersion (2023 Edition)
 
 A guided tour that walks through the fundamentals of Git, inspired by the premise that to know a thing is to do it.
 
